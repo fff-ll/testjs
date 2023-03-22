@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "adbkit": "^2.0.17",
+    "child_process": "^1.0.2",
+    "iconv-lite": "^0.6.3"
+  },
+  "name": "testjs",
+  "version": "1.0.0",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
