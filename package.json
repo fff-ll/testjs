@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "adbkit": "^2.0.17",
-    "child_process": "^1.0.2",
-    "iconv-lite": "^0.6.3"
+    
+    "child_process": "^1.0.2"
+  
   },
   "name": "testjs",
   "version": "1.0.0",

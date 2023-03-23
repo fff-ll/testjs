@@ -15,16 +15,16 @@ const iconv = require("iconv-lite");
 // }
 
 function exec(shell){
+    // var process=require('child_process');
     try{
-        // var x;
         process.execSync(shell);
     }catch(error){
         if(error !==null){           
             console.log('exec error: '+error);
+            // document.getElementById('idlog').innerHTML+= '<br />'+'exec error: '+error;
             return false;
         }
     }
-    // console.log("xx"+x);
     return true;
 }
 
@@ -39,6 +39,7 @@ function check(){
 
     var res=exec('adb devices');
     console.log('check '+res);
+    // document.getElementById('idlog').innerHTML+= '<br />'+'check '+res;
     return res;
 }
 
@@ -51,6 +52,7 @@ function open(game){
 
     var res=exec('adb shell am start -n '+game);
     console.log('open '+res);
+    // document.getElementById('idlog').innerHTML+= '<br />'+'open '+res;
     return res;
 }
 
@@ -63,6 +65,7 @@ function isrunning(game){
 
     var res=exec('adb shell dumpsys activity activities | findstr '+game);
     console.log('isrunning '+res);
+    // document.getElementById('idlog').innerHTML+= '<br />'+'isrunning '+res;
     return res;
 }
 
@@ -75,6 +78,7 @@ function close(game){
 
     var res=exec('adb shell am force-stop '+game);
     console.log('close '+res);
+    // document.getElementById('idlog').innerHTML+= '<br />'+'close '+res;
     return res;
 }
 
@@ -82,7 +86,8 @@ function circle(times,i_times,input_time,game) {
     if(i_times===0){
         return;
     }
-    console.log("第"+(times-i_times+1)+"次:")
+    console.log("第"+(times-i_times+1)+"次:");
+    // document.getElementById('idlog').innerHTML+= '<br />'+"第"+(times-i_times+1)+"次:";
     if(!open(game)){
         console.log("打开游戏失败");
         alert("打开游戏失败");
@@ -121,9 +126,10 @@ function main(game,input_time,i_times){
     //     },(input_time+2000)*i);
     // }
     const times=i_times;
+    input_time*=1000;
     circle(times,i_times,input_time,game);
 }
-// main('chocolate',3000,2);
+main('chocolate',3,2);
 
 
 
