@@ -6,33 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
     <form action="/demo/demo_form.asp">
-        开启时间:<br>
-        <input id="input_time" type="text" name="Input_time" value="">
+        游戏:<br>
+        <input id="idgame" type="text" name="game" value="">
+        <br>
+        开启时间(秒):<br>
+        <input id="idinput_time" type="text" name="input_time" value="">
         <br>
         重复次数:<br>
-        <input id="input_times" type="text" name="Input_times" value="">
+        <input id="idi_times" type="text" name="i_times" value="">
         <br><br>
-        <input id="start_button" type="submit" value="开始" onclick="">
+        <input id="start_button" type="submit" value="开始" onclick="main(game.value, input_time.value, i_times.value)">
         </form> 
 
 </head>
 <body>
     <div id="root"></div>
 </body>
-<!-- <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<!-- <script>
+    function start(){
+       //获取 输入框的值
+    }
+</script> -->
+<script src="./test.js"></script>
 
-</script>
-<script src="./CaseManager.js" type="module"></script>
-<script src="./mfp_autotest_web.js"></script>
-<script src="./test/test.js"></script>
-<script src="./merge/merge_web.js"></script>
-<script src="./order/order_web.js"></script>
-<script src="./activity/activity_web.js"></script>
-<script src="./store/store_web.js"></script>
-<script src="./guide/guide_web.js"></script>
-<script src="./fairy/fairy_web.js"></script>
-<script src="./ocean/ocean_web.js"></script>
-<script src="./gift/gift_web.js"></script>
-<script src="./discoveries/discoveries_web.js"></script> -->
 
 </html>
