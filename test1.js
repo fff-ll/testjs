@@ -1,4 +1,4 @@
-var process=require('child_process');
+var c_p=require('child_process');
 
 // function exec(shell,callback){
 //     // process.exec(shell,function(error,stdout,stderr){
@@ -13,9 +13,32 @@ var process=require('child_process');
 //     callback(true);
 // }
 
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function rlPromisify(fn) {
+    return async (...args) => {
+        return new Promise(resolve => fn(...args, resolve));
+    };
+}
+
+const question = rlPromisify(rl.question.bind(rl));
+(async () => {
+    const game = await question('游戏: ');
+    const input_time = await question('持续时间（秒）: ');
+    const i_times = await question('重复次数: ');
+    main(game,input_time,i_times);
+    rl.close();
+})();
+
+
 function exec(shell){
     try{
-        process.execSync(shell);
+        c_p.execSync(shell);
     }catch(error){
         if(error !==null){           
             console.log('exec error: '+error);
@@ -28,13 +51,6 @@ function exec(shell){
 
 function check(){
     console.log('check');
-    // var res;
-    // exec('adb devices',function(x){
-    //     console.log('check '+x);
-    //     res=x;
-    //     // return res;
-    // });
-
     var res=exec('adb devices');
     console.log('check '+res);
     // document.getElementById('idlog').innerHTML+= '<br />'+'check '+res;
@@ -82,25 +98,26 @@ function close(game){
 
 function circle(times,i_times,input_time,game) {
     if(i_times===0){
-        return "完成";
+        console.log("完成，无异常");
+        return;
     }
     console.log("第"+(times-i_times+1)+"次:");
     // document.getElementById('idlog').innerHTML+= '<br />'+"第"+(times-i_times+1)+"次:";
     if(!open(game)){
         console.log("打开游戏失败");
         // alert("打开游戏失败");
-        return ("第"+(times-i_times+1)+"次:"+"打开游戏失败");
+        return ;
     };
     setTimeout(() => {
         if(!isrunning(game)){
             console.log("游戏异常结束");
-            alert("游戏异常结束");
-            return ("第"+(times-i_times+1)+"次:"+"游戏异常结束");
+            // alert("游戏异常结束");
+            return;
         };
         if(!close(game)){
             console.log("关闭游戏失败");
-            alert("关闭游戏失败");
-            return ("第"+(times-i_times+1)+"次:"+"关闭游戏失败");
+            // alert("关闭游戏失败");
+            return;
         };
         setTimeout(()=>{
             circle(times,--i_times,input_time,game);
@@ -112,26 +129,15 @@ function circle(times,i_times,input_time,game) {
 function main(game,input_time,i_times){
     if(!check()){
         // alert("adb连接失败/缺少adb");
-        return ("adb连接失败/缺少adb");
+        console.log("adb连接失败/缺少adb");
+        return;
     };
-    // for(let i=1;i<=i_times;i++){
-    //     setTimeout(() => {
-    //         console.log("第"+i+"次:");
-    //         open(game);
-    //         setTimeout(() => {
-    //             close(game);
-    //         }, input_time*i);
-    //     },(input_time+2000)*i);
-    // }
     const times=i_times;
     input_time*=1000;
-    let res=circle(times,i_times,input_time,game);
-    return res;
+    circle(times,i_times,input_time,game);
 }
-main('chocolate',3,2);
-module.exports = {
-    main:main
-}
+
+
 
 
 

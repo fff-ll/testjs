@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
     <title>test</title>
-    <form>
+    <form action="http://127.0.0.1:3000/" method="GET">
         游戏:<br>
         <input id="idgame" type="text" name="game" value="chocolate" autocomplete="off">
         <br>
@@ -17,7 +16,7 @@
         <input id="idi_times" type="text" name="i_times" value="" autocomplete="off">
         <br><br>
         <!-- <input id="start_button" type="button" value="开始" onclick="main(game.value, input_time.value, i_times.value)"> -->
-        <input id="start_button" type="button" value="开始" onclick="exec('adb devices')">
+        <input id="start_button" type="submit" value="开始" onclick="exec('adb devices')">
     </form>
         <p id="idlog"></p>
 
@@ -25,19 +24,11 @@
 <body>
     <div id="root"></div>
 </body>
-<!-- <script>
+ <!-- <script>
     function start(){
        //获取 输入框的值
-    }
-</script> -->
-<!-- <script src="./node_modules/child_process/package.json" type="module"></script> -->
+    } -->
 
-<!-- <script type="module">
-    // 使用require导入example.js c.js
-    require(["child_process"], function() {
-        var process = require("./node_modules/child_process");
-    });
-   </script> -->
 
 <script src="./test.js"></script>
 
